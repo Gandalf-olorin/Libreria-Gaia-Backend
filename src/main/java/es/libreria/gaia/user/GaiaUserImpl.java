@@ -2,10 +2,15 @@ package es.libreria.gaia.user;
 
 import java.util.List;
 
-
-
+/**
+ * Esta clase es la implementacion de {@link GaiaUser} con los datos basicos y sus roles.
+ * 
+ * @author ACING DIM XLIV
+ * @version v1.0.0
+ * @see GaiaUser
+ * 
+ */
 public class GaiaUserImpl implements GaiaUser {
-
 
   private String userId;
   private String username;

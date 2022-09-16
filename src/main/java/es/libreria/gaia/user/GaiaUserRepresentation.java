@@ -1,11 +1,10 @@
 package es.libreria.gaia.user;
 
-
 import java.util.List;
 import org.keycloak.representations.idm.UserRepresentation;
 
 /**
- * Esta clase es una implementacion de {@link gaiaUser} para obtener un {@link UserRepresentation}
+ * Esta clase es una implementacion de {@link GaiaUser} para obtener un {@link UserRepresentation}
  * como representacion de un usuario del producto Gaia.
  * 
  * @author ACING DIM XLIV
@@ -14,11 +13,7 @@ import org.keycloak.representations.idm.UserRepresentation;
  * @see UserRepresentation
  *
  */
-
-
-
 public class GaiaUserRepresentation implements GaiaUser {
-
 
   UserRepresentation userRepresentation;
 

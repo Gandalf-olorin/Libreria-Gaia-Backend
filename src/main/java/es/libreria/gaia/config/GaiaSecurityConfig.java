@@ -1,7 +1,5 @@
 package es.libreria.gaia.config;
 
-
-
 import org.keycloak.adapters.KeycloakConfigResolver;
 import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration;
@@ -23,10 +21,9 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
  * de un servidor IAM Gaia.
  * 
  * @author ACING DIM XLIV
+ * @version v1.0.0
  * @see KeycloakWebSecurityConfigurerAdapter
  */
-
-
 @KeycloakConfiguration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, // permite utilizar la anotación pre/post de
@@ -42,7 +39,6 @@ public class GaiaSecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
    * @param auth
    * @throws Exception
    */
-
   @Autowired
   public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
     KeycloakAuthenticationProvider provider = new KeycloakAuthenticationProvider();
@@ -75,6 +71,5 @@ public class GaiaSecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
   public KeycloakConfigResolver keycloakConfigResolver() {
     return new KeycloakSpringBootConfigResolver();
   }
-
 
 }

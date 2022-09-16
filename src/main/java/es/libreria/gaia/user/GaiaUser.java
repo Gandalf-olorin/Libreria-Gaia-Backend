@@ -1,6 +1,5 @@
 package es.libreria.gaia.user;
 
-
 import java.util.List;
 
 /**
@@ -10,11 +9,7 @@ import java.util.List;
  * @author ACING DIM XLIV
  * @version v1.0.0
  */
-
-
-
 public interface GaiaUser {
-
 
   String getUserId();
 
@@ -27,6 +22,5 @@ public interface GaiaUser {
   String getEmail();
 
   List<String> getRoles();
-
 
 }

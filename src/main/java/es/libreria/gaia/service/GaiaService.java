@@ -1,6 +1,5 @@
 package es.libreria.gaia.service;
 
-
 import java.util.Collection;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.resource.RealmResource;
@@ -16,8 +15,6 @@ import es.libreria.gaia.user.GaiaUserRepresentation;
  * @version v1.0.0
  * @see GaiaUser
  */
-
-
 public interface GaiaService {
 
   Keycloak getKeycloak();
@@ -37,7 +34,5 @@ public interface GaiaService {
   Collection<GaiaUserRepresentation> getUsersWithRol(String rol);
 
   Collection<GaiaUser> getUsersRealm();
-
-
 
 }
