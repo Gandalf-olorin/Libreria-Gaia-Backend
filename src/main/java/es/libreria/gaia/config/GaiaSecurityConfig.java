@@ -17,59 +17,57 @@ import org.springframework.security.web.authentication.session.NullAuthenticated
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 
 /**
- * Esta clase de configuración proporciona una adaptador JAVA Spring-Security para poder hacer uso
- * de un servidor IAM Gaia.
- * 
- * @author ACING DIM XLIV
- * @version v1.0.0
+ * Esta clase de configuración proporciona una adaptador JAVA Spring-Security
+ *  para poder hacer uso de un servidor IAM Sauron.
+ * @author ACING DIM XLII
+ * @version v2.1.0
  * @see KeycloakWebSecurityConfigurerAdapter
  */
 @KeycloakConfiguration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true, // permite utilizar la anotación pre/post de
-                                                   // Spring Security.
-    securedEnabled = true, // permite utilizar la anotación @Secured de Spring Security.
-    jsr250Enabled = true) // permite utilizar la anotación @RolesAllowed, nativa de Java.
+@EnableGlobalMethodSecurity(prePostEnabled = true, 		//permite utilizar la anotación pre/post de Spring Security.
+							securedEnabled = true,		//permite utilizar la anotación @Secured de Spring Security.
+							jsr250Enabled = true)		//permite utilizar la anotación @RolesAllowed, nativa de Java.
 @PropertySource("classpath:gaiaBasic.properties")
 public class GaiaSecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
+	
+	/**
+	 * Proporciona como proveedor de autenticacion el producto Sauron al entorno de seguridad.
+	 * @param auth
+	 * @throws Exception
+	 */
+	@Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        KeycloakAuthenticationProvider provider = new KeycloakAuthenticationProvider();
+        provider.setGrantedAuthoritiesMapper(new SimpleAuthorityMapper());
+        auth.authenticationProvider(provider);
+    }
 
-  /**
-   * Proporciona como proveedor de autenticacion el producto Gaia al entorno de seguridad.
-   * 
-   * @param auth
-   * @throws Exception
-   */
-  @Autowired
-  public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    KeycloakAuthenticationProvider provider = new KeycloakAuthenticationProvider();
-    provider.setGrantedAuthoritiesMapper(new SimpleAuthorityMapper());
-    auth.authenticationProvider(provider);
-  }
+//	Comprueba que exista una sesion valida en las peticiones Http
+    @Bean
+    @Override
+    protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
+        return new NullAuthenticatedSessionStrategy();
+    }
 
-  // Comprueba que exista una sesion valida en las peticiones Http
-  @Bean
-  @Override
-  protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
-    return new NullAuthenticatedSessionStrategy();
-  }
+    //Permite configurar la seguridad basada en web para http requests específicos. 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception
+    {
+        super.configure(http);
+        http.authorizeRequests()
+            .anyRequest().permitAll();
+        http.csrf().disable();
+    }
 
-  // Permite configurar la seguridad basada en web para http requests específicos.
-  @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    super.configure(http);
-    http.authorizeRequests().anyRequest().permitAll();
-    http.csrf().disable();
-  }
-
-  /**
-   * Proporciona un KeycloakDeployment para autenticar y autorizar las peticiones en base a las
-   * propiedades configuradas en el archivo .properties.
-   * 
-   * @return KeycloakConfigResolver
-   */
-  @Bean
-  public KeycloakConfigResolver keycloakConfigResolver() {
-    return new KeycloakSpringBootConfigResolver();
-  }
-
+    /**
+     * Proporciona un KeycloakDeployment para autenticar y autorizar las peticiones en base a las propiedades
+     * configuradas en el archivo .properties.
+     * @return KeycloakConfigResolver
+     */
+    @Bean
+    public KeycloakConfigResolver keycloakConfigResolver(){
+        return new KeycloakSpringBootConfigResolver();
+    }
+    
 }

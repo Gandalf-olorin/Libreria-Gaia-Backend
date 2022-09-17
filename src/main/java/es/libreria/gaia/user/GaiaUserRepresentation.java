@@ -4,10 +4,9 @@ import java.util.List;
 import org.keycloak.representations.idm.UserRepresentation;
 
 /**
- * Esta clase es una implementacion de {@link GaiaUser} para obtener un {@link UserRepresentation}
- * como representacion de un usuario del producto Gaia.
- * 
- * @author ACING DIM XLIV
+ * Esta clase es una implementacion de {@link GaiaUser} para obtener un {@link UserRepresentation} como representacion de un 
+ * usuario del producto gaia.
+ * @author ACING DIM XLII
  * @version v1.0.0
  * @see GaiaUser
  * @see UserRepresentation
@@ -15,48 +14,48 @@ import org.keycloak.representations.idm.UserRepresentation;
  */
 public class GaiaUserRepresentation implements GaiaUser {
 
-  UserRepresentation userRepresentation;
+	UserRepresentation userRepresentation;
+		
+	public GaiaUserRepresentation (UserRepresentation userRepresentation) {
+		this.userRepresentation = userRepresentation;
+	}
+	
+	private UserRepresentation getUserRepresentation() {
+		return userRepresentation;
+	}
+	
+	@Override
+	public String getUserId() {
 
-  public GaiaUserRepresentation(UserRepresentation userRepresentation) {
-    this.userRepresentation = userRepresentation;
-  }
+		return getUserRepresentation().getId();
+	}
 
-  private UserRepresentation getUserRepresentation() {
-    return userRepresentation;
-  }
+	@Override
+	public String getFirstname() {
 
-  @Override
-  public String getUserId() {
+		return getUserRepresentation().getFirstName();
+	}
 
-    return getUserRepresentation().getId();
-  }
+	@Override
+	public String getLastname() {
 
-  @Override
-  public String getFirstname() {
+		return getUserRepresentation().getLastName();
+	}
 
-    return getUserRepresentation().getFirstName();
-  }
+	@Override
+	public List<String> getRoles() {
 
-  @Override
-  public String getLastname() {
+		return getUserRepresentation().getRealmRoles();
+	}
 
-    return getUserRepresentation().getLastName();
-  }
+	@Override
+	public String getUsername() {
+		return getUserRepresentation().getUsername();
+	}
 
-  @Override
-  public List<String> getRoles() {
-
-    return getUserRepresentation().getRealmRoles();
-  }
-
-  @Override
-  public String getUsername() {
-    return getUserRepresentation().getUsername();
-  }
-
-  @Override
-  public String getEmail() {
-    return getUserRepresentation().getEmail();
-  }
+	@Override
+	public String getEmail() {
+		return getUserRepresentation().getEmail();
+	}
 
 }

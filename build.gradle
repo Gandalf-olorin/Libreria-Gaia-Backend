@@ -4,8 +4,8 @@ plugins {
 	id 'java-library'
 }
 
-group = 'es.libreria'
-version = 'v1.0.0'
+group = 'es.lanyu'
+version = 'v2.1.1'
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'
 
@@ -27,24 +27,11 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	
 	//Keycloak
-	// https://mvnrepository.com/artifact/org.keycloak/keycloak-spring-boot-starter
-	compile group: 'org.keycloak', name: 'keycloak-spring-boot-starter', version: '19.0.2'
-	
-	//compile group: 'org.keycloak', name: 'keycloak-spring-boot-starter', version: '11.0.2'
-	
-	// https://mvnrepository.com/artifact/org.keycloak/keycloak-admin-client
-	compile group: 'org.keycloak', name: 'keycloak-admin-client', version: '19.0.2'
-	
-	
-	
-	//compile group: 'org.keycloak', name: 'keycloak-admin-client', version: '11.0.2'
-	
+	compile group: 'org.keycloak', name: 'keycloak-spring-boot-starter', version: '11.0.2'
+	compile group: 'org.keycloak', name: 'keycloak-admin-client', version: '11.0.2'
 	
 	// https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
-	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
-	
-	// https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
-	//compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'		
+	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'		
 	
 	//Tests
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
