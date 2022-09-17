@@ -1,28 +1,28 @@
-package es.libreria.gaia.service;
+package es.lanyu.sauron.service;
 
 import java.util.Collection;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.resource.RealmResource;
 import org.keycloak.admin.client.resource.UsersResource;
-import es.libreria.gaia.user.GaiaUser;
-import es.libreria.gaia.user.GaiaUserRepresentation;
+import es.lanyu.sauron.user.SauronUser;
+import es.lanyu.sauron.user.SauronUserRepresentation;
 
 /**
- * Esta interfaz proporciona un usuario autenticado en el servidor Gaia con su perfil
+ * Esta interfaz proporciona un usuario autenticado en el servidor Sauron con su perfil
  * y sus roles, asi como la lista de todos los roles de la aplicación donde se encuentra el cliente securizado. 
  * @author ACING DIM XLII
  * @version v2.1.1 
- * @see GaiaUser
+ * @see SauronUser
  */
-public interface GaiaService {
+public interface SauronService {
 
 	Keycloak getKeycloak();
 	
-	GaiaUser getCurrentUser();
+	SauronUser getCurrentUser();
 	
 	Collection<String> getCurrentUserRoles();
 	
-	GaiaUserRepresentation getUserProfile();
+	SauronUserRepresentation getUserProfile();
 	
 	RealmResource getRealmResource();
 	
@@ -30,8 +30,8 @@ public interface GaiaService {
 	
 	Collection<String> getRolesRealm();
 	
-	Collection<GaiaUserRepresentation> getUsersWithRol (String rol);
+	Collection<SauronUserRepresentation> getUsersWithRol (String rol);
 	
-	Collection<GaiaUser> getUsersRealm();
+	Collection<SauronUser> getUsersRealm();
 
 }

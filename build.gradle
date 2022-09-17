@@ -4,7 +4,7 @@ plugins {
 	id 'java-library'
 }
 
-group = 'es.libreria'
+group = 'es.lanyu'
 version = 'v2.1.1'
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'

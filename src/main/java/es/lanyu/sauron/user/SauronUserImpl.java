@@ -1,15 +1,15 @@
-package es.libreria.gaia.user;
+package es.lanyu.sauron.user;
 
 import java.util.List;
 
 /**
- * Esta clase es la implementacion de {@link GaiaUser} con los datos basicos y sus roles.
+ * Esta clase es la implementacion de {@link SauronUser} con los datos basicos y sus roles.
  * @author ACING DIM XLII
  * @version v1.0.0
- * @see GaiaUser
+ * @see SauronUser
  * 
  */
-public class GaiaUserImpl implements GaiaUser {
+public class SauronUserImpl implements SauronUser {
 
     private String userId;
     private String username;
