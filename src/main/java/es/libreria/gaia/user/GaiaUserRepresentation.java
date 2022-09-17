@@ -4,8 +4,9 @@ import java.util.List;
 import org.keycloak.representations.idm.UserRepresentation;
 
 /**
- * Esta clase es una implementacion de {@link GaiaUser} para obtener un {@link UserRepresentation} como representacion de un 
- * usuario del producto gaia.
+ * Esta clase es una implementacion de {@link GaiaUser} para obtener un {@link UserRepresentation}
+ * como representacion de un usuario del producto Gaia.
+ * 
  * @author ACING DIM XLII
  * @version v1.0.0
  * @see GaiaUser
@@ -14,48 +15,48 @@ import org.keycloak.representations.idm.UserRepresentation;
  */
 public class GaiaUserRepresentation implements GaiaUser {
 
-	UserRepresentation userRepresentation;
-		
-	public GaiaUserRepresentation (UserRepresentation userRepresentation) {
-		this.userRepresentation = userRepresentation;
-	}
-	
-	private UserRepresentation getUserRepresentation() {
-		return userRepresentation;
-	}
-	
-	@Override
-	public String getUserId() {
+  UserRepresentation userRepresentation;
 
-		return getUserRepresentation().getId();
-	}
+  public GaiaUserRepresentation(UserRepresentation userRepresentation) {
+    this.userRepresentation = userRepresentation;
+  }
 
-	@Override
-	public String getFirstname() {
+  private UserRepresentation getUserRepresentation() {
+    return userRepresentation;
+  }
 
-		return getUserRepresentation().getFirstName();
-	}
+  @Override
+  public String getUserId() {
 
-	@Override
-	public String getLastname() {
+    return getUserRepresentation().getId();
+  }
 
-		return getUserRepresentation().getLastName();
-	}
+  @Override
+  public String getFirstname() {
 
-	@Override
-	public List<String> getRoles() {
+    return getUserRepresentation().getFirstName();
+  }
 
-		return getUserRepresentation().getRealmRoles();
-	}
+  @Override
+  public String getLastname() {
 
-	@Override
-	public String getUsername() {
-		return getUserRepresentation().getUsername();
-	}
+    return getUserRepresentation().getLastName();
+  }
 
-	@Override
-	public String getEmail() {
-		return getUserRepresentation().getEmail();
-	}
+  @Override
+  public List<String> getRoles() {
+
+    return getUserRepresentation().getRealmRoles();
+  }
+
+  @Override
+  public String getUsername() {
+    return getUserRepresentation().getUsername();
+  }
+
+  @Override
+  public String getEmail() {
+    return getUserRepresentation().getEmail();
+  }
 
 }

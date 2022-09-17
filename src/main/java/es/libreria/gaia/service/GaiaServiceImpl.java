@@ -33,20 +33,20 @@ import es.libreria.gaia.user.GaiaUserRepresentation;
  * 
  * @author ACING DIM XLII
  * @version v2.1.1
- * @see es.GaiaUser.sauron.GaiaUser
- * @see es.GaiaUserRepresentation.sauron.GaiaUserRepresentation
+ * @see es.GaiaUser.gaia.GaiaUser
+ * @see es.GaiaUserRepresentation.gaia.GaiaUserRepresentation
  * 
  */
 @Service
 public class GaiaServiceImpl implements GaiaService {
 
-  @Value("${sauron.admin-cli}")
+  @Value("${gaia.admin-cli}")
   private String adminClient;
 
-  @Value("${sauron.username-admin}")
+  @Value("${gaia.username-admin}")
   private String admin;
 
-  @Value("${sauron.admin-pass}")
+  @Value("${gaia.admin-pass}")
   private String adminPass;
 
   @Value("${keycloak.auth-server-url}")
@@ -58,7 +58,7 @@ public class GaiaServiceImpl implements GaiaService {
   @SuppressWarnings("unchecked")
   @Override
   public GaiaUser getCurrentUser() {
-    GaiaUserImpl sauronUserImpl = new GaiaUserImpl();
+    GaiaUserImpl gaiaUserImpl = new GaiaUserImpl();
 
     KeycloakPrincipal<RefreshableKeycloakSecurityContext> principal =
         (KeycloakPrincipal<RefreshableKeycloakSecurityContext>) SecurityContextHolder.getContext()
@@ -68,25 +68,25 @@ public class GaiaServiceImpl implements GaiaService {
         (Collection<SimpleGrantedAuthority>) SecurityContextHolder.getContext().getAuthentication()
             .getAuthorities();
 
-    sauronUserImpl.setUserId(principal.getKeycloakSecurityContext().getToken().getSubject());
-    sauronUserImpl
+    gaiaUserImpl.setUserId(principal.getKeycloakSecurityContext().getToken().getSubject());
+    gaiaUserImpl
         .setUsername(principal.getKeycloakSecurityContext().getToken().getPreferredUsername());
-    sauronUserImpl.setEmail(principal.getKeycloakSecurityContext().getToken().getEmail());
-    sauronUserImpl.setFirstname(principal.getKeycloakSecurityContext().getToken().getFamilyName());
-    sauronUserImpl.setLastname(principal.getKeycloakSecurityContext().getToken().getGivenName());
-    sauronUserImpl.setRoles(authorities.stream().map(SimpleGrantedAuthority::getAuthority)
+    gaiaUserImpl.setEmail(principal.getKeycloakSecurityContext().getToken().getEmail());
+    gaiaUserImpl.setFirstname(principal.getKeycloakSecurityContext().getToken().getFamilyName());
+    gaiaUserImpl.setLastname(principal.getKeycloakSecurityContext().getToken().getGivenName());
+    gaiaUserImpl.setRoles(authorities.stream().map(SimpleGrantedAuthority::getAuthority)
         .collect(Collectors.toList()));
 
     Collection<String> rolesRenombrados = new ArrayList<>();
-    sauronUserImpl.getRoles().forEach(r -> {
+    gaiaUserImpl.getRoles().forEach(r -> {
       String rolRenombrado = r.replace("ROLE_", "");
       rolesRenombrados.add(rolRenombrado);
     });
-    sauronUserImpl.getRoles().clear();
-    sauronUserImpl.getRoles().addAll(rolesRenombrados);
+    gaiaUserImpl.getRoles().clear();
+    gaiaUserImpl.getRoles().addAll(rolesRenombrados);
 
 
-    return sauronUserImpl;
+    return gaiaUserImpl;
   }
 
   @Override
@@ -132,14 +132,14 @@ public class GaiaServiceImpl implements GaiaService {
 
   @Override
   public List<GaiaUser> getUsersRealm() {
-    List<GaiaUser> sauronUsers = new ArrayList<GaiaUser>();
+    List<GaiaUser> gaiaUsers = new ArrayList<GaiaUser>();
     List<UserRepresentation> representationUsers = getUsersResource().list();
     representationUsers.stream().forEach(u -> {
       GaiaUserRepresentation usuario = new GaiaUserRepresentation(u);
-      sauronUsers.add(usuario);
+      gaiaUsers.add(usuario);
     });
 
-    return sauronUsers;
+    return gaiaUsers;
 
   }
 
@@ -155,14 +155,14 @@ public class GaiaServiceImpl implements GaiaService {
     Set<UserRepresentation> usuariosConRol = new HashSet<UserRepresentation>();
     usuariosConRol = getRealmResource().roles().get(rol).getRoleUserMembers();
 
-    List<GaiaUserRepresentation> sauronUsersConRol = new ArrayList<GaiaUserRepresentation>();
+    List<GaiaUserRepresentation> gaiaUsersConRol = new ArrayList<GaiaUserRepresentation>();
     usuariosConRol.stream().forEach(u -> {
       GaiaUserRepresentation usuario = new GaiaUserRepresentation(u);
-      sauronUsersConRol.add(usuario);
+      gaiaUsersConRol.add(usuario);
     });
 
 
-    return sauronUsersConRol;
+    return gaiaUsersConRol;
 
   }
 
@@ -171,9 +171,9 @@ public class GaiaServiceImpl implements GaiaService {
   /*
    * Obtiene el perfil del usuario autenticado.
    * 
-   * @return SauronUserRepresentation
+   * @return gaiaUserRepresentation
    * 
-   * @see es.lanyu.sauron.service.SauronService#getUserProfile()
+   * @see es.lanyu.gaia.service.GaiaService#getUserProfile()
    */
   @Override
   public GaiaUserRepresentation getUserProfile() {

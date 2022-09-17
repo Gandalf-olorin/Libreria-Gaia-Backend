@@ -3,22 +3,24 @@ package es.libreria.gaia.user;
 import java.util.List;
 
 /**
- * Esta interfaz proporciona los datos basicos (perfil) y roles del usuario autenticado en el servidor gaia. 
+ * Esta interfaz proporciona los datos basicos (perfil) y roles del usuario autenticado en el
+ * servidor Gaia.
+ * 
  * @author ACING DIM XLII
- * @version v1.0.0 
+ * @version v1.0.0
  */
 public interface GaiaUser {
 
-	String getUserId();
+  String getUserId();
 
-	String getUsername();
-	
-	String getFirstname();
-	
-	String getLastname();
+  String getUsername();
 
-	String getEmail();
+  String getFirstname();
 
-	List<String> getRoles();
+  String getLastname();
+
+  String getEmail();
+
+  List<String> getRoles();
 
 }
