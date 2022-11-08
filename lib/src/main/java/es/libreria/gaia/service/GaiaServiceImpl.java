@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import org.jboss.resteasy.client.jaxrs.internal.ResteasyClientBuilderImpl;
 import org.keycloak.KeycloakPrincipal;
 import org.keycloak.adapters.RefreshableKeycloakSecurityContext;
 import org.keycloak.admin.client.Keycloak;
@@ -96,7 +96,7 @@ public class GaiaServiceImpl implements GaiaService {
     // mediante credentials secret, no es necesario ningun usuario autenticado.
     Keycloak kc = KeycloakBuilder.builder().serverUrl(urlServer).realm("master").username(admin)
         .password(adminPass).clientId(adminClient)
-        .resteasyClient(new ResteasyClientBuilder().connectionPoolSize(10).build()).build();
+        .resteasyClient(new ResteasyClientBuilderImpl().connectionPoolSize(10).build()).build();
     return kc;
   }
 

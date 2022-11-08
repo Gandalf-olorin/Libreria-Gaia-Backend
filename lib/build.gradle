@@ -22,16 +22,16 @@ repositories {
 dependencies {
 
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.7.3'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.7.5'
 	
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools
-	implementation group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.7.3'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.7.5'
 	
 	// https://mvnrepository.com/artifact/org.keycloak/keycloak-spring-boot-starter
-	implementation group: 'org.keycloak', name: 'keycloak-spring-boot-starter', version: '19.0.2'
+	implementation group: 'org.keycloak', name: 'keycloak-spring-boot-starter', version: '20.0.1'
 
 	// https://mvnrepository.com/artifact/org.keycloak/keycloak-admin-client
-	implementation group: 'org.keycloak', name: 'keycloak-admin-client', version: '19.0.2'
+	implementation group: 'org.keycloak', name: 'keycloak-admin-client', version: '20.0.1'
 	
 	// https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
 	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
